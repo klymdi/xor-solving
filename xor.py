@@ -25,11 +25,11 @@ def forward(x, w1, w2, predict=False):
 
 
 def backprop(a2, z0, z1, z2, y):
-    delta2 = z2 - y
-    Delta2 = np.matmul(z1.T, delta2)
-    delta1 = (delta2.dot(w2[1:, :].T))*sigmoid_deriv(a1)
-    Delta1 = np.matmul(z0.T, delta1)
-    return delta2, Delta1, Delta2
+    loss_l2 = z2 - y
+    Delta2 = np.matmul(z1.T, loss_l2)
+    loss_l1 = (delta2.dot(w2[1:, :].T))*sigmoid_deriv(a1)
+    Delta1 = np.matmul(z0.T, loss_l1)
+    return loss_l2, Delta1, Delta2
 
 
 X = np.array([[1, 1, 0],
